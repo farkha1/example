@@ -6,7 +6,7 @@
 #include<QLineEdit >
 #include<QLCDNumber>
 #include<QSlider>
-
+#include<QMessageBox>
 int main(int argc, char *argv[])
 {
 
@@ -84,8 +84,11 @@ int main(int argc, char *argv[])
 
       QObject::connect(&Q, SIGNAL(clicked()), &a, SLOT(quit()));
       QObject::connect(&s, SIGNAL(valueChanged(int)),&m, SLOT(display(int))) ;
+      QObject::connect(&bouton, SIGNAL(clicked()), &w, SLOT( InfoBulle() ));
 
-       //  QObject::connect(&bouton, SIGNAL(clicked()), &a, SLOT( QDialog()));
+
+
+
 
 
 

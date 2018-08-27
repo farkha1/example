@@ -14,7 +14,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+public slots:
+ void InfoBulle();
 private:
     Ui::MainWindow *ui;
 };
