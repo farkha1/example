@@ -7,12 +7,78 @@
 #include<QLCDNumber>
 #include<QSlider>
 #include<QMessageBox>
+#include<QLibraryInfo>
+#include<QTranslator>
+#include<QGroupBox>
+#include<QVBoxLayout>
+#include<QFormLayout>
+
+
+
 int main(int argc, char *argv[])
 {
 
     // Section Constructeur
 
     QApplication a(argc, argv);
+    QString locale = QLocale::system().name().section('_', 0, 0);
+       QTranslator translator;
+       translator.load(QString("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+       a.installTranslator(&translator);
+
+    MainWindow *w=new MainWindow();
+
+    // Section Affichage
+
+       (*w).show();
+
+
+    //Signal & Slot
+
+   // QObject:: connect(&e1, SIGNAL(textEdited(QString)), &e2, SLOT(setText(this.parent())));
+      //QObject:: connect(&e1, SIGNAL(textEdited(QString)), &e2, SLOT(setText(QString)));
+     // QObject:: connect(&e2, SIGNAL(textEdited(QString)),&w, SLOT(InfoBulle()));
+
+    //  QObject::connect(&rb1, SIGNAL(toggled(bool)), &w, SLOT(InfoBulle()));
+
+    return a.exec();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+int main(int argc, char *argv[])
+{
+
+    // Section Constructeur
+
+    QApplication a(argc, argv);
+    QString locale = QLocale::system().name().section('_', 0, 0);
+       QTranslator translator;
+       translator.load(QString("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+       a.installTranslator(&translator);
+
+
 
     MainWindow w;
     QWidget f(&w);
@@ -33,7 +99,7 @@ int main(int argc, char *argv[])
 
     // Section Genre
 
-     QRadioButton rb("Homme" ,&f);
+     QRadioButton rb("Homme",&f );
     // rb.show();
     rb.move(30, 110);
     rb.setFont(maPolice);
@@ -43,6 +109,11 @@ int main(int argc, char *argv[])
    // rb.show();
    rb1.move(250, 110);
    rb1.setFont(maPolice);
+
+   rb.setChecked(true);
+
+
+
 
 //   Section Age
 
@@ -56,6 +127,8 @@ int main(int argc, char *argv[])
         m.move(90, 140);
         QSlider s(Qt::Horizontal, &f);
         s.move(250, 140);
+//QString::number(m.intValue())
+
 
         //Buttons
 
@@ -82,16 +155,21 @@ int main(int argc, char *argv[])
 
         //Signal & Slot
 
+        //quitter app
       QObject::connect(&Q, SIGNAL(clicked()), &a, SLOT(quit()));
+        //ajouter user
+      QObject::connect(&bouton, SIGNAL(clicked()), &w, SLOT(InfoBulle()));
+        //set age
       QObject::connect(&s, SIGNAL(valueChanged(int)),&m, SLOT(display(int))) ;
-      QObject::connect(&bouton, SIGNAL(clicked()), &w, SLOT( InfoBulle() ));
 
 
+    QObject:: connect(&e1, SIGNAL(textEdited(QString)), &e2, SLOT(setText(this.parent() )));
+      //QObject:: connect(&e1, SIGNAL(textEdited(QString)), &e2, SLOT(setText(QString)));
+     // QObject:: connect(&e2, SIGNAL(textEdited(QString)),&w, SLOT(InfoBulle()));
 
-
-
-
+    //  QObject::connect(&rb1, SIGNAL(toggled(bool)), &w, SLOT(InfoBulle()));
 
 
     return a.exec();
 }
+*/
